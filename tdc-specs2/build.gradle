@@ -1,0 +1,40 @@
+apply plugin: 'eclipse'
+apply plugin: 'jetty'
+apply plugin: 'maven'
+apply plugin: 'scala'
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+version = '0.1-SNAPSHOT'
+group = 'net.vidageek'
+
+repositories {
+	mavenCentral()
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+configurations {
+	provided
+}
+
+sourceSets {
+	main { compileClasspath += configurations.provided }
+	test { runtimeClasspath += configurations.provided }
+}
+
+eclipse.classpath.plusConfigurations += configurations.provided
+
+scalaVersion = '2.9.2'
+
+dependencies {
+	testCompile 'org.specs2:specs2_2.9.2:1.11'
+	testCompile 'org.scalatest:scalatest_2.9.2:2.0.M1'
+	testCompile 'junit:junit:4.10'
+
+	scalaTools 'org.scala-lang:scala-compiler:' + scalaVersion
+	scalaTools 'org.scala-lang:scala-library:' + scalaVersion
+}
+
+[jettyRunWar, jettyRun]*.contextPath = '/'
