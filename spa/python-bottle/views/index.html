@@ -1,0 +1,81 @@
+<html>
+  <!DOCTYPE html>
+  <head>
+    <link href="static/stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="static/stylesheets/layout.css" rel="stylesheet">  
+  </head>
+  <body>
+    <nav class="navbar">
+    <div class="navbar-inner">
+      <ul class="nav">
+        <li>
+        <a href="#/enderecos" id="cadastroEnderecos">Enderecos</a>
+        </li>
+      </ul>
+    </div>
+    </nav>
+    <div id="content">
+      <h1>Single Page Application</h1>
+    
+      <script id="enderecosTp" type="text/html">
+        <section>
+          <hgroup>
+            <h1>Endereços</h1>
+          </hgroup>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Estado</th>
+                <th>Cidade</th>
+                <th>Logradouro</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <a href="#" data-action="new">Novo Endereço</a>
+        </section>
+      </script>
+
+      <script id="enderecoTp" type="text/html">
+        <td>{{data.cidade.estado.nome}}</td>
+        <td>{{data.cidade.nome}}</td>
+        <td>{{data.logradouro}}</td>
+      </script>
+
+      <script id="formularioEnderecoTp" type="text/html">
+        <section>
+          <hgroup>
+            <h1>Endereços</h1>
+          </hgroup>
+          <form>
+            <legend>Cadastro de Endereço</legend>
+            <label>Estado</label>
+            <select name="estado" value="{{data.cidade.estado.id}}" />
+            <label>Cidade</label>
+            <select name="cidade" value="{{data.cidade.id}}" />
+            <label>CEP</label>
+            <input type="text" name="cep" value="{{data.cep}}" />
+            <label>Logradouro</label>
+            <input type="text" name="logradouro" value="{{data.logradouro}}" />                               
+            <div class="form-actions">
+              <button type="button" class="btn btn-primary" data-action="submit">Salvar</button>
+              <button type="button" class="btn" data-action="cancel">Cancelar</button>  
+            </div>
+          </form>
+        </section>
+      </script>
+
+      <script id="opcaoComboTp" type="text/html">
+        <option value="{{valor}}">{{nome}}</option>
+      </script>
+
+    </div>
+    <script src="static/scripts/lib/jquery.js"></script>
+    <script src="static/scripts/lib/bootstrap.js"></script>  
+    <script src="static/scripts/lib/underscore.js"></script>
+    <script src="static/scripts/lib/backbone.js"></script>
+    <script src="static/scripts/lib/mustache.js"></script>
+    <script src="static/scripts/app.js"></script>  
+  </body>
+</html>
