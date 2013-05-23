@@ -1,0 +1,2 @@
+require './spa'
+run Spa
