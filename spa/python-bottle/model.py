@@ -70,9 +70,9 @@ class Endereco:
       return to_json(('logradouro', 'cep', 'cidade_id', 'id'), [attrs])
     if self.params:
       return to_json(('logradouro', 'cep', 'cidade_id'), [self.params])
-    return self.__to_json__(self.enderecos)
+    return self.__to_json(self.enderecos)
 
-  def __to_json__(self, rows):
+  def __to_json(self, rows):
     enderecos = [{'id':r[0],'logradouro':r[1],'cep':r[2],'cidade_id':r[3],
                   'cidade':{'id':r[4],'nome':r[5], 'estado_id':r[6],
                   'estado':{'id':r[7],'nome':r[8]}}} for r in rows]
