@@ -1,0 +1,28 @@
+<html>
+  <!DOCTYPE html>
+  <head>
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="stylesheets/layout.css" rel="stylesheet">  
+  </head>
+  <body>
+    <nav class="navbar">
+    <div class="navbar-inner">
+      <ul class="nav">
+        <li>
+        <a href="#/enderecos" id="cadastroEnderecos">Endereços</a>
+        </li>
+      </ul>
+    </div>
+    </nav>
+    <div id="content">
+      <h1>Single Page Application</h1>
+      <%= yield %>
+    </div>
+    <script src="scripts/lib/jquery.js"></script>
+    <script src="scripts/lib/bootstrap.js"></script>  
+    <script src="scripts/lib/underscore.js"></script>
+    <script src="scripts/lib/backbone.js"></script>
+    <script src="scripts/lib/mustache.js"></script>
+    <script src="scripts/app.js"></script>  
+  </body>
+</html>

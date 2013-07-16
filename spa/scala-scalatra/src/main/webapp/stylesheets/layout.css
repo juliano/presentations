@@ -1,0 +1,6 @@
+#content {
+  padding-left: 2%;
+}
+.table-hover tbody tr {
+  cursor: pointer;
+}
