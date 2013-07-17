@@ -3,7 +3,6 @@ import bottle_pgsql
 from bottle import get, post, put, static_file, install, request, response
 
 import model
-from utils import jsonify
 
 plugin = bottle_pgsql.Plugin('dbname=spa host=localhost user=spa password=spa')
 install(plugin)
@@ -14,53 +13,50 @@ def server_static(filepath):
 
 @get('/')
 def home():
-  return open('views/index.html').read()
+  return static_file('index.html', root='views')
 
 @get('/estados')
-@jsonify
 def estados(db):
-  Estado = model.Estado(db)
+  estados = model.Estado(db)
+  response.content_type = 'application/json'
 
-  return Estado.all().to_json()
+  return estados.all().to_json()
 
 @get('/estados/:estado_id/cidades')
-@jsonify
 def estado_cidades(estado_id, db):
-  Cidade = model.Cidade(db)
+  cidades = model.Cidade(db)
+  response.content_type = 'application/json'
 
-  return Cidade.find_all_by_estado(estado_id).to_json()
+  return cidades.find_all_by_estado(estado_id).to_json()
 
 @get('/enderecos')
-@jsonify
 def enderecos(db):
-  Endereco = model.Endereco(db)
+  enderecos = model.Endereco(db)
+  response.content_type = 'application/json'
 
-  return Endereco.all().to_json()
+  return enderecos.all().to_json()
 
 @get('/enderecos/:id')
-@jsonify
 def endereco(id, db):
-  Endereco = model.Endereco(db)
+  enderecos = model.Endereco(db)
+  response.content_type = 'application/json'
 
-  return Endereco.find(id).to_json()
+  return enderecos.find(id).to_json()
 
 @post('/enderecos')
-@jsonify
 def salvar_endereco(db):
-  Endereco = model.Endereco(db)
+  enderecos = model.Endereco(db)
 
-  endereco = Endereco.build(request.json)
+  endereco = enderecos.build(request.json)
   endereco.save()
   return endereco.to_json()
 
 @put('/enderecos/:id')
-@jsonify
 def alterar_endereco(id, db):
-  Endereco = model.Endereco(db)
+  enderecos = model.Endereco(db)
 
-  endereco = Endereco.build(request.json, id)
+  endereco = enderecos.build(request.json, id)
   endereco.update()
   return endereco.to_json()
 
 bottle.run(host='localhost', port=8080)
-
